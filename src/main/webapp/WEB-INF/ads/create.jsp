@@ -17,7 +17,6 @@
                     Please enter a title.
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text" required></textarea>
