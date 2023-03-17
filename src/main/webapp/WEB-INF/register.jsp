@@ -41,24 +41,6 @@
             <input type="submit" class="btn btn-primary btn-block">
         </form>
     </div>
-<script>
-    (function () {
-        'use strict'
-
-        var forms = document.querySelectorAll('.needs-validation')
-
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
+<script><jsp:include page="/WEB-INF/js/user_validation.js"></jsp:include></script>
 </body>
 </html>

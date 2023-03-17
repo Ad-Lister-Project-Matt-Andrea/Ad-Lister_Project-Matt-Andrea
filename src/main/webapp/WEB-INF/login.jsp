@@ -28,24 +28,8 @@
         </form>
         <a href="/register"><input type="submit" class="btn btn-warning btn-block" value="Don't Have An Account?"></a>
     </div>
-<script>
-    (function () {
-        'use strict'
 
-        var forms = document.querySelectorAll('.needs-validation')
+    <script><jsp:include page="/WEB-INF/js/user_validation.js"></jsp:include></script>
 
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
 </body>
 </html>
