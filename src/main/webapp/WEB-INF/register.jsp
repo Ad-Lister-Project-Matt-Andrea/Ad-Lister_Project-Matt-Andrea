@@ -41,6 +41,8 @@
             <input type="submit" class="btn btn-primary btn-block">
         </form>
     </div>
-<script><jsp:include page="/WEB-INF/js/user_validation.js"></jsp:include></script>
+    <script><jsp:include page="/WEB-INF/partials/bootstrap_script.jsp"></jsp:include></script>
+
+    <script><jsp:include page="/WEB-INF/js/user_validation.js"></jsp:include></script>
 </body>
 </html>
