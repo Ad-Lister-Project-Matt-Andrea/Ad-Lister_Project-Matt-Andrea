@@ -17,7 +17,6 @@
                     Please enter a title.
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text" required></textarea>
@@ -28,24 +27,10 @@
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>
-<script>
-    (function () {
-        'use strict'
 
-        var forms = document.querySelectorAll('.needs-validation')
+<script><jsp:include page="/WEB-INF/partials/bootstrap_script.jsp"></jsp:include></script>
 
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
+<script><jsp:include page="/WEB-INF/js/user_validation.js"></jsp:include></script>
 
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
 </body>
 </html>
