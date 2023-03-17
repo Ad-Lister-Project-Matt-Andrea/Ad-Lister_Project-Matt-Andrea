@@ -28,6 +28,7 @@ public class Ad {
     }
 
     public void setId(long id) {
+
         this.id = id;
     }
 
@@ -36,6 +37,9 @@ public class Ad {
     }
 
     public void setUserId(long userId) {
+        if(userId < 1 ){
+            throw new IllegalArgumentException("user-id cannot be less than 1!");
+        }
         this.userId = userId;
     }
 
@@ -44,6 +48,9 @@ public class Ad {
     }
 
     public void setTitle(String title) {
+        if(title.isEmpty()){
+            throw new IllegalArgumentException("Title cannot be empty!");
+        }
         this.title = title;
     }
 
@@ -52,6 +59,9 @@ public class Ad {
     }
 
     public void setDescription(String description) {
+        if(description.isEmpty()){
+            throw new IllegalArgumentException("Description cannot be empty!");
+        }
         this.description = description;
     }
 }

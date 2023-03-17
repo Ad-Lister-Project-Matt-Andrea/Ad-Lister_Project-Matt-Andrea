@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -27,12 +28,25 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
-        Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
-        );
-        DaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/ads");
+        
+        long user_id = user.getId();
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
+        
+        Ad ad = new Ad();
+        try {
+            ad.setUserId(user_id);
+            ad.setTitle(title);
+            ad.setDescription(description);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect("/ads/create");
+            return;
+        }
+
+            DaoFactory.getAdsDao().insert(ad);
+            response.sendRedirect("/ads");
+        
     }
 }
