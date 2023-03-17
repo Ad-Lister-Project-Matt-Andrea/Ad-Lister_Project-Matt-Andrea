@@ -35,22 +35,22 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-    @Override
-    public Long insert(User user) {
-        String query = "INSERT INTO ymir_matt.users(username, email, password) VALUES (?, ?, ?)";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getEmail());
-            stmt.setString(3, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-            stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return rs.getLong(1);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error creating new user", e);
-        }
-    }
+//    @Override
+//    public Long insert(User user) {
+//        String query = "INSERT INTO ymir_matt.users(username, email, password) VALUES (?, ?, ?)";
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+//            stmt.setString(1, user.getUsername());
+//            stmt.setString(2, user.getEmail());
+//            stmt.setString(3, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+//            stmt.executeUpdate();
+//            ResultSet rs = stmt.getGeneratedKeys();
+//            rs.next();
+//            return rs.getLong(1);
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Error creating new user", e);
+//        }
+//    }
 
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
@@ -63,5 +63,43 @@ public class MySQLUsersDao implements Users {
             rs.getString("password")
         );
     }
+
+
+    @Override
+    public long insert(String username, String password, User user) {
+        String query = "SELECT COUNT(*) AS count FROM ymir_matt.users WHERE username = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next() && rs.getInt("count") > 0) {
+                return -1;
+            } else {
+                String query2 = "INSERT INTO ymir_matt.users(username, email, password) VALUES (?, ?, ?)";
+                try {
+                    PreparedStatement pstmt = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+                    pstmt.setString(1, user.getUsername());
+                    pstmt.setString(2, user.getEmail());
+                    pstmt.setString(3, BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+                    pstmt.executeUpdate();
+                    ResultSet rs2 = pstmt.getGeneratedKeys();
+                    rs2.next();
+                    return rs2.getLong(1);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        } catch (SQLException ex) {
+            return -1;
+        }
+    }
+
+
+
+
+
+
+
+
 
 }

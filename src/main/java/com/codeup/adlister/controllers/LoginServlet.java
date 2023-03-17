@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        boolean validAttempt = BCrypt.checkpw(password, BCrypt.hashpw(password, BCrypt.gensalt()));
+        boolean validAttempt = BCrypt.checkpw(password, user.getPassword());
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
