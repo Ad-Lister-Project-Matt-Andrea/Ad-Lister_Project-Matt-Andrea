@@ -10,23 +10,23 @@
     <div class="container ">
         <h1 class="pt-4">Please Log In</h1>
         <form action="/login" method="POST" class="needs-validation" novalidate>
-            <div class="form-group">
+            <div class="form-group has-validation">
                 <label for="username">Username</label>
-                <input id="username" name="username" class="form-control is-invalid" type="text" required>
-                <div id="usernameValid" class="valid-feedback">
+                <input id="username" name="username" class="form-control is-valid" type="text" required>
+                <div id="usernameValid" class="valid-feedback ">
                     Looks good!
                 </div>
-                <div id="usernameInvalid" class="invalid-feedback">
+                <div id="usernameInvalid" class="invalid-feedback ">
                     Please enter a valid username.
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-validation">
                 <label for="password">Password</label>
-                <input id="password" name="password" class="form-control is-invalid" type="password" required>
-                <div id="passwordValid" class="valid-feedback">
+                <input id="password" name="password" class="form-control is-valid" type="password" required>
+                <div id="passwordValid" class="valid-feedback ">
                     Looks good!
                 </div>
-                <div id="passwordInvalid" class="invalid-feedback">
+                <div id="passwordInvalid" class="invalid-feedback ">
                     Please enter a valid password.
                 </div>
             </div>
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <script><jsp:include page="/WEB-INF/partials/bootstrap_script.jsp"></jsp:include></script>
+    <jsp:include page="/WEB-INF/partials/bootstrap_script.jsp"></jsp:include>
     <script><jsp:include page="/WEB-INF/js/user_validation.js"></jsp:include></script>
 
 </body>
