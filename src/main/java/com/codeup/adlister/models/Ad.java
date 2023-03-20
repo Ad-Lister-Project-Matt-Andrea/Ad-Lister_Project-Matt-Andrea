@@ -10,6 +10,10 @@ public class Ad {
 
     private String location;
 
+    private String category;
+
+
+
     public double getPrice() {
         return price;
     }
@@ -24,6 +28,17 @@ public class Ad {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+
+    public Ad(long id, long userId, String title, String description, double price, String location, String category) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.location = location;
+        this.category = category;
     }
 
     public Ad(long id, long userId, String title, String description, double price, String location) {
@@ -92,5 +107,13 @@ public class Ad {
             throw new IllegalArgumentException("Description cannot be empty!");
         }
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

@@ -9,7 +9,7 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container mt-3">
         <h1>Create a new Ad</h1>
-        <form action="/ads/create" method="post" class="needs-validation" >
+        <form action="/ads/create" method="post" class="requires-validation" >
             <div class="form-group">
                 <label for="title">Title</label>
                 <input id="title" name="title" class="form-control is-invalid" type="text" required>
@@ -47,7 +47,28 @@
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
-                    Please enter general location.
+                    Please enter a general location.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" class="form-select is-invalid" aria-label="Default select example">
+                    <option disabled selected value="">Choose a category</option>
+                    <option value="free">Free</option>
+                    <option value="helpWanted">Help Wanted</option>
+                    <option value="services">Services</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="electronics">Services</option>
+                    <option value="wallDecor">Wall Decor</option>
+                    <option value="collectables">Collectables</option>
+                    <option value="pets">Pets</option>
+                    <option value="clothes">Clothes</option>
+                </select>
+                <div id="categoryValid" class="valid-feedback ">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please select a category.
                 </div>
             </div>
             <div class="d-grid gap-2 mt-3">
