@@ -20,12 +20,11 @@
     <c:forEach var="ad" items="${ads}">
         <div class="card container-fluid border shadow-lg p-2">
             <div class="card-body">
-                <h2 class="card-title">${ad.title}</h2>
+                <a href="/ads/details?id=${ad.id}"><h2>${ad.title}</h2>
                 <p class="card-text">${ad.description}</p>
-                <a href="/details" class="btn btn-primary">View Ad</a>
             </div>
         </div>
-    </c:forEach>
+    </c:forEach></a>
 </div>
 
 </body>
