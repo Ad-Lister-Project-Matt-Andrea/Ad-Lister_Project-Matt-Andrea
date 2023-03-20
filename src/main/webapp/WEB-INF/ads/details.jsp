@@ -32,6 +32,11 @@
     <tr>
         <h2>General location:</h2>
         <h5>${ad.location}</h5>
+        <br>
+    </tr>
+    <tr>
+        <h2>Category:</h2>
+        <h5>${ad.category}</h5>
     </tr>
 </table>
 </div>

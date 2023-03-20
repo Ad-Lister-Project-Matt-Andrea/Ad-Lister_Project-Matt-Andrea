@@ -27,14 +27,16 @@ public class CreateAdServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
-        
+
+
         long user_id = user.getId();
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         String location = request.getParameter("location");
+        String category = request.getParameter("category");
 
-
+        System.out.println(category);
         
         Ad ad = new Ad();
         try {
@@ -43,6 +45,7 @@ public class CreateAdServlet extends HttpServlet {
             ad.setDescription(description);
             ad.setPrice(Double.parseDouble(price));
             ad.setLocation(location);
+            ad.setCategory(category);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             e.printStackTrace();

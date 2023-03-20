@@ -1,17 +1,19 @@
 (function () {
     'use strict'
 
-    const forms = document.querySelectorAll('.needs-validation');
+    const forms = document.querySelectorAll('.requires-validation');
 
     document.addEventListener("DOMContentLoaded",function(){
         isTitleValidated();
         isDescriptionValidated();
         isPriceValidated();
         isLocationValidated();
+        isCategoryValidated();
         $("#title").keyup(isTitleValidated);
         $("#description").keyup(isDescriptionValidated);
         $("#price").keyup(isPriceValidated);
         $("#location").keyup(isLocationValidated);
+        $("#category").change(isCategoryValidated);
     })
 
     //submit button
@@ -68,6 +70,18 @@
         } else {
             $("#location").addClass("is-invalid");
             $("#location").removeClass("is-valid");
+        }
+    }
+
+    function isCategoryValidated(){
+        let category = document.getElementById("category").value;
+        console.log(category );
+        if (category !== "") {
+            $("#category").removeClass("is-invalid");
+            $("#category").addClass("is-valid");
+        } else {
+            $("#category").addClass("is-invalid");
+            $("#category").removeClass("is-valid");
         }
     }
 })()
