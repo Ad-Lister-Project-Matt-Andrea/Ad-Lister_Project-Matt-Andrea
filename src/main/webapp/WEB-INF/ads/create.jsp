@@ -23,6 +23,16 @@
                 <div class="invalid-feedback">
                     Please enter a description.
                 </div>
+                <label for="price">Price</label>
+                <span>$</span><input id="price" name="price" class="form-control" type="text" required>
+                <div class="invalid-feedback">
+                    Please enter a price.
+                </div>
+                <label for="location">General Location</label>
+                <input id="location" name="location" class="form-control" type="text" required>
+                <div class="invalid-feedback">
+                    Please enter general location.
+                </div>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>

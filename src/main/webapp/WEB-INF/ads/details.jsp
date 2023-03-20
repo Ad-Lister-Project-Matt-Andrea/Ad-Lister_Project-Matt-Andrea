@@ -15,16 +15,25 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-<h1> THIS IS THE DETAILS PAGE </h1>
+<div class="container">
+<h1>${ad.title}</h1>
+    <br>
 <table>
     <tr>
-        <td>Title:</td>
-        <td>${ad.title}</td>
+        <h2>Price:</h2>
+        <h5>$${ad.price}</h5>
+        <br>
     </tr>
     <tr>
-        <td>Description:</td>
-        <td>${ad.description}</td>
+        <h2>Description:</h2>
+        <h5>${ad.description}</h5>
+        <br>
+    </tr>
+    <tr>
+        <h2>General location:</h2>
+        <h5>${ad.location}</h5>
     </tr>
 </table>
+</div>
 </body>
 </html>

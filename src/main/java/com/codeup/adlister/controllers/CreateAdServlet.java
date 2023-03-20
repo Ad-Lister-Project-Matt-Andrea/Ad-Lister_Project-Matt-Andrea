@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -32,12 +31,18 @@ public class CreateAdServlet extends HttpServlet {
         long user_id = user.getId();
         String title = request.getParameter("title");
         String description = request.getParameter("description");
+        String price = request.getParameter("price");
+        String location = request.getParameter("location");
+
+
         
         Ad ad = new Ad();
         try {
             ad.setUserId(user_id);
             ad.setTitle(title);
             ad.setDescription(description);
+            ad.setPrice(Double.parseDouble(price));
+            ad.setLocation(location);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
