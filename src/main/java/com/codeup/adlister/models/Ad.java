@@ -6,6 +6,35 @@ public class Ad {
     private String title;
     private String description;
 
+    private double price;
+
+    private String location;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Ad(long id, long userId, String title, String description, double price, String location) {
+        this.id = id;
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.location = location;
+    }
+
     public Ad(long id, long userId, String title, String description) {
         this.id = id;
         this.userId = userId;

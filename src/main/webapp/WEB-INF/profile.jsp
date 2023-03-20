@@ -15,11 +15,10 @@
             <h1 class="text-center">My Ads</h1>
             <c:forEach var="ad" items="${ads}">
                 <div class="row">
-                <div class="card container-fluid border shadow-lg p-2">
+                <div class="card container-fluid border shadow-lg p-2 col-md-6">
                     <div class="card-body">
-                        <h2 class="card-title">${ad.title}</h2>
+                    <a href="/edit?id=${ad.id}"><h2>${ad.title}</h2>
                         <p class="card-text">${ad.description}</p>
-                        <a href="/details" class="btn btn-primary">View Ad</a>
                     </div>
                 </div>
                 </div>
