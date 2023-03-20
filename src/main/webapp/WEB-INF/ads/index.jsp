@@ -18,9 +18,11 @@
         </div>
     </form>
     <c:forEach var="ad" items="${ads}">
-        <div class="col-md-6">
-            <a href="/ads/details?id=${ad.id}"><h2>${ad.title}</h2>
-            <p>${ad.description}</p></a>
+        <div class="card container-fluid border shadow-lg p-2">
+            <div class="card-body">
+                <a href="/ads/details?id=${ad.id}"><h2>${ad.title}</h2>
+                <p class="card-text">${ad.description}</p>
+            </div>
         </div>
     </c:forEach></a>
 </div>
