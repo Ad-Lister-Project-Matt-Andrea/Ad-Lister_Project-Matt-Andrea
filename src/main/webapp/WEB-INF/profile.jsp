@@ -9,7 +9,7 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-    <div class="container">
+    <div class="container mt-3">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
         <div class="container">
             <h1>My Ads</h1>

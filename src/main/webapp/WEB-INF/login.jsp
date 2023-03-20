@@ -7,29 +7,35 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="container">
+    <div class="container ">
         <h1 class="pt-4">Please Log In</h1>
-        <form action="/login" method="POST" class="needs-validation">
+        <form action="/login" method="POST" class="needs-validation" novalidate>
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control is-invalid" type="text" required>
-                <div class="invalid-feedback">
+                <div id="usernameValid" class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="usernameInvalid" class="invalid-feedback">
                     Please enter a valid username.
                 </div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input id="password" name="password" class="form-control is-invalid" type="password" required>
-                <div class="invalid-feedback">
+                <div id="passwordValid" class="valid-feedback">
+                    Looks good!
+                </div>
+                <div id="passwordInvalid" class="invalid-feedback">
                     Please enter a valid password.
                 </div>
             </div>
-            <div class="d-grid gap-2">
-                <input type="submit" class="btn btn-primary btn-block" value="Log In">
+            <div class="d-grid gap-2 mt-3">
+                <input id="submitbtn" type="submit" class="btn btn-primary btn-block" value="Log In">
             </div>
         </form>
         <div class="d-grid gap-2">
-            <a href="/register">
+            <a href="/register" class="d-grid gap-2">
                 <input type="submit" class="btn btn-warning btn-block" value="Don't Have An Account?">
             </a>
         </div>
