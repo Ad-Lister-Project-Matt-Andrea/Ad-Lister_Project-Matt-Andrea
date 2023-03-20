@@ -7,7 +7,7 @@
     </jsp:include>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+    <jsp:include page="/WEB-INF/partials/profile_navbar.jsp" />
 
     <div class="container mt-3">
         <h1>Welcome, ${sessionScope.user.username}!</h1>
@@ -17,7 +17,7 @@
                 <div class="row">
                 <div class="card container-fluid border shadow-lg p-2 col-md-6">
                     <div class="card-body">
-                    <a href="/edit?id=${ad.id}"><h2>${ad.title}</h2>
+                        <a href="/edit?id=${ad.id}"><h2>${ad.title}</h2></a>
                         <p class="card-text">${ad.description}</p>
                     </div>
                 </div>
