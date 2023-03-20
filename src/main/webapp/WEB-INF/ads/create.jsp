@@ -29,13 +29,23 @@
                 <div class="invalid-feedback">
                     Please enter a description.
                 </div>
+            </div>
+            <div class="form-group">
                 <label for="price">Price</label>
-                <span>$</span><input id="price" name="price" class="form-control" type="text" required>
+                <span>$</span><input id="price" name="price" class="form-control is-invalid" type="text" required>
+                <div id="priceValid" class="valid-feedback ">
+                    Looks good!
+                </div>
                 <div class="invalid-feedback">
                     Please enter a price.
                 </div>
+            </div>
+            <div class="form-group">
                 <label for="location">General Location</label>
-                <input id="location" name="location" class="form-control" type="text" required>
+                <input id="location" name="location" class="form-control is-invalid" type="text" required>
+                <div id="locationValid" class="valid-feedback ">
+                    Looks good!
+                </div>
                 <div class="invalid-feedback">
                     Please enter general location.
                 </div>

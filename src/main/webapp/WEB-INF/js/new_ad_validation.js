@@ -6,8 +6,12 @@
     document.addEventListener("DOMContentLoaded",function(){
         isTitleValidated();
         isDescriptionValidated();
+        isPriceValidated();
+        isLocationValidated();
         $("#title").keyup(isTitleValidated);
         $("#description").keyup(isDescriptionValidated);
+        $("#price").keyup(isPriceValidated);
+        $("#location").keyup(isLocationValidated);
     })
 
     //submit button
@@ -42,6 +46,28 @@
         } else {
             $("#description").addClass("is-invalid");
             $("#description").removeClass("is-valid");
+        }
+    }
+
+    function isPriceValidated(){
+        let price = $("#price").val();
+        if (price.length > 0) {
+            $("#price").removeClass("is-invalid");
+            $("#price").addClass("is-valid");
+        } else {
+            $("#price").addClass("is-invalid");
+            $("#price").removeClass("is-valid");
+        }
+    }
+
+    function isLocationValidated(){
+        let location = $("#location").val();
+        if (location.length > 0) {
+            $("#location").removeClass("is-invalid");
+            $("#location").addClass("is-valid");
+        } else {
+            $("#location").addClass("is-invalid");
+            $("#location").removeClass("is-valid");
         }
     }
 })()
