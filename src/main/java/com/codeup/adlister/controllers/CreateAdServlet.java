@@ -45,7 +45,7 @@ public class CreateAdServlet extends HttpServlet {
             ad.setDescription(description);
             ad.setPrice(Double.parseDouble(price));
             ad.setLocation(location);
-            ad.setCategory(category);
+
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -53,7 +53,12 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
 
-            DaoFactory.getAdsDao().insert(ad);
+            //TODO: Insert Ad, store that ID in a variable
+            long adID = DaoFactory.getAdsDao().insert(ad);
+            long categoryId = DaoFactory.getAdsCategoriesDao().getCategoryId(category);
+
+            DaoFactory.getAdsCategoriesDao().insert(adID, categoryId);
+            //TODO: Insert ad id and category id into ads_categories table
             response.sendRedirect("/ads");
         
     }

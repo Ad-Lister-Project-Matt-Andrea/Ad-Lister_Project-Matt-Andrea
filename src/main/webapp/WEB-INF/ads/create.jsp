@@ -57,6 +57,7 @@
                     <option value="free">Free</option>
                     <option value="helpWanted">Help Wanted</option>
                     <option value="services">Services</option>
+                    <option value="electronics">Electronics</option>
                     <option value="furniture">Furniture</option>
                     <option value="electronics">Services</option>
                     <option value="wallDecor">Wall Decor</option>
