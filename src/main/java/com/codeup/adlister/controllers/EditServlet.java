@@ -32,6 +32,7 @@ public class EditServlet extends HttpServlet {
             double price = Double.parseDouble(request.getParameter("price"));
             String location = request.getParameter("location");
 
+
             ad.setTitle(title);
             ad.setDescription(description);
             ad.setPrice(price);
