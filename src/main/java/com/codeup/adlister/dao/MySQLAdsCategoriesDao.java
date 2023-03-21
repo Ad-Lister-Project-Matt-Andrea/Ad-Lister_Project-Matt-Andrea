@@ -1,8 +1,12 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySQLAdsCategoriesDao implements AdsCategories {
 
@@ -21,12 +25,19 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
     }
 
     @Override
-    public void insert(long adId, long categoryId) {
+    public void insert(Ad ad) {
         try {
-            String insertQuery = "INSERT INTO ads_categories(ad_id, category_id) VALUES (?, ?)";
-            PreparedStatement stmt = connection.prepareStatement(insertQuery);
-            stmt.setLong(1, adId);
-            stmt.setLong(2, categoryId);
+            StringBuilder insertQuery = new StringBuilder("INSERT INTO ads_categories(ad_id, category_id) VALUES ");
+            insertQuery.append("(?, ?), ".repeat(Math.max(0, ad.getCategories().size()-1)));
+            insertQuery.append("(?, ?);");
+
+            PreparedStatement stmt = connection.prepareStatement(insertQuery.toString());
+            int i = 0;
+            for (String category: ad.getCategories()) {
+                long catId = getCategoryId(category);
+                stmt.setLong(++i, ad.getId());
+                stmt.setLong(++i, catId);
+            }
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,8 +49,6 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
     public long getCategoryId(String category) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
-
         try {
             stmt = connection.prepareStatement("SELECT id FROM categories WHERE category = ?");
             stmt.setString(1, category);
@@ -49,5 +58,20 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving ad information", e);
         }
+    }
+
+    //if we had a categories dao this would go there
+    public List<Category> getCategoriesFromCategoryNames(String[] names){
+        //loop through category names create category for each one and return a list of categories
+        List<Category> categories = new ArrayList<>();
+        int counter = 1;
+        for (String name: names) {
+            categories.add(new Category(counter, name));
+            counter ++;
+        }
+        return categories;
+        //have at least three categories
+        //for each name in names use a query
+        //clean up later
     }
 }

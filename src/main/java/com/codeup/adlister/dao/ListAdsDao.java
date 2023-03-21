@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,11 @@ public class ListAdsDao implements Ads {
     @Override
     public void delete(Ad ad) {
 
+    }
+
+    @Override
+    public ArrayList<Category> getAdCategories(long adId) {
+        return null;
     }
 
 
