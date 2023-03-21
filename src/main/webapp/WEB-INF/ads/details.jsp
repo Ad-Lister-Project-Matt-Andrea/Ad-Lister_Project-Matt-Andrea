@@ -36,7 +36,7 @@
     </tr>
     <tr>
         <h2>Category:</h2>
-        <h5>${ad.category}</h5>
+        <h5>${ad.categories}</h5>
     </tr>
 </table>
 </div>

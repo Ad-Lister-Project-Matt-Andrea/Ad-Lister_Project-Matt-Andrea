@@ -52,15 +52,14 @@
             </div>
             <div class="form-group">
                 <label for="category" class="form-label">Category</label>
-                <select id="category" name="category" class="form-select is-invalid" aria-label="Default select example">
+                <select id="category" name="category" multiple class="form-select is-invalid" aria-label="Default select example">
                     <option disabled selected value="">Choose a category</option>
                     <option value="free">Free</option>
-                    <option value="helpWanted">Help Wanted</option>
+                    <option value="help wanted">Help Wanted</option>
                     <option value="services">Services</option>
-                    <option value="electronics">Electronics</option>
                     <option value="furniture">Furniture</option>
-                    <option value="electronics">Services</option>
-                    <option value="wallDecor">Wall Decor</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="wall decor">Wall Decor</option>
                     <option value="collectables">Collectables</option>
                     <option value="pets">Pets</option>
                     <option value="clothes">Clothes</option>

@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -45,9 +46,11 @@ public class MySQLAdsDao implements Ads {
             stmt.setString(3, ad.getDescription());
             stmt.setDouble(4, ad.getPrice());
             stmt.setString(5, ad.getLocation());
+            //loop through categories for the new ad
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
+
             return rs.getLong(1);
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
@@ -55,6 +58,7 @@ public class MySQLAdsDao implements Ads {
     }
 
     private Ad extractAd(ResultSet rs) throws SQLException {
+//        List <Category> category = getAdCategories(adId)
         return new Ad(
                 rs.getLong("id"),
                 rs.getLong("user_id"),
@@ -170,6 +174,32 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error updating ad information", e);
         }
     }
+
+
+    public ArrayList<Category> getAdCategories(long adId) {
+        ArrayList<Category> categories = new ArrayList<>();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ymir_matt.ads_categories inner join select * \n" +
+                    "from ad_category ac \n" +
+                    "inner join categories c on ac.category_id = c.id \n" +
+                    "WHERE ad_id = ?");
+            stmt.setLong(1, adId);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Category category = new Category(rs.getLong("id") ,rs.getString("category"));
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(categories);
+        return categories;
+    }
+
 
 }
 

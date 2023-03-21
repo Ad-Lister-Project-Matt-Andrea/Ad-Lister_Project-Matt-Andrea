@@ -12,7 +12,7 @@ public class Ad {
 
     private String location;
 
-    private List<Category> category;
+    private List<String> categories;
 
 
 
@@ -33,14 +33,14 @@ public class Ad {
     }
 
 
-    public Ad(long id, long userId, String title, String description, double price, String location, List category) {
+    public Ad(long id, long userId, String title, String description, double price, String location, List<String> categories) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
         this.price = price;
         this.location = location;
-        this.category = category;
+        this.categories = categories;
     }
 
     public Ad(long id, long userId, String title, String description, double price, String location) {
@@ -111,11 +111,11 @@ public class Ad {
         this.description = description;
     }
 
-    public List<Category> getCategory() {
-        return category;
+    public List<String> getCategories() {
+        return categories;
     }
 
-    public void setCategory(List<Category> category) {
-        this.category = category;
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 }
