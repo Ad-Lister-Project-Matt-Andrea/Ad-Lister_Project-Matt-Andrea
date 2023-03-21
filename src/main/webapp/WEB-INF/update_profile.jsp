@@ -13,7 +13,7 @@
     </jsp:include>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/partials/profile_navbar.jsp" />
+    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container mt-3">
         <h1>Edit Profile</h1>

@@ -11,7 +11,7 @@
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post" class="requires-validation" >
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title" class="form-label">Title</label>
                 <input id="title" name="title" class="form-control is-invalid" type="text" required>
                 <div id="titleValid" class="valid-feedback ">
                     Looks good!
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description" class="form-label">Description</label>
                 <textarea id="description" name="description" class="form-control is-invalid" type="text" required></textarea>
                 <div id="descriptionValid" class="valid-feedback ">
                     Looks good!
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="price">Price</label>
+                <label for="price" class="form-label">Price</label>
                 <span>$</span><input id="price" name="price" class="form-control is-invalid" type="text" required>
                 <div id="priceValid" class="valid-feedback ">
                     Looks good!
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="location">General Location</label>
+                <label for="location" class="form-label">General Location</label>
                 <input id="location" name="location" class="form-control is-invalid" type="text" required>
                 <div id="locationValid" class="valid-feedback ">
                     Looks good!
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="category">Category</label>
+                <label for="category" class="form-label">Category</label>
                 <select id="category" name="category" class="form-select is-invalid" aria-label="Default select example">
                     <option disabled selected value="">Choose a category</option>
                     <option value="free">Free</option>

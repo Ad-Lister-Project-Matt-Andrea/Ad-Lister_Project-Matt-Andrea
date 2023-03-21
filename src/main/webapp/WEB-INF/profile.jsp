@@ -17,7 +17,7 @@
                 <div class="row">
                 <div class="card container-fluid border shadow-lg p-2 col-md-6">
                     <div class="card-body">
-                        <a href="/edit?id=${ad.id}"><h2>${ad.title}</h2></a>
+                        <a href="/edit?id=${ad.id}" class="text-decoration-none"><h2>${ad.title}</h2></a>
                         <p class="card-text">${ad.description}</p>
                     </div>
                 </div>
