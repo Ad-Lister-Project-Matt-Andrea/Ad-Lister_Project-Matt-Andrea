@@ -16,6 +16,7 @@ public class DetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String adId = request.getParameter("id");
         Ad ad = DaoFactory.getAdsDao().findById(Long.parseLong(adId));
+        DaoFactory.getAdsDao().getAdCategories(Long.parseLong(adId));
         request.setAttribute("ad", ad);
         request.getRequestDispatcher("/WEB-INF/ads/details.jsp").forward(request, response);
     }

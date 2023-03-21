@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -34,11 +35,11 @@ public class CreateAdServlet extends HttpServlet {
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         String location = request.getParameter("location");
-        String category = request.getParameter("category");
+        String[] categories = request.getParameterValues("category");
+        //List<Category> categories= DaoFactory.getAdsCategoriesDao().getCategoriesFromCategoryNames(category);
+        System.out.println(categories.toString());
 
-        System.out.println(category);
-
-        if(title == null || description ==null || price == null || location == null || category == null){
+        if(title == null || description ==null || price == null || location == null || categories == null){
             response.sendRedirect("/ads/create");
             return;
         }
@@ -50,7 +51,7 @@ public class CreateAdServlet extends HttpServlet {
             ad.setDescription(description);
             ad.setPrice(Double.parseDouble(price));
             ad.setLocation(location);
-
+            ad.setCategories(List.of(categories));
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -58,13 +59,10 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
 
-            //TODO: Insert Ad, store that ID in a variable
-            long adID = DaoFactory.getAdsDao().insert(ad);
-            long categoryId = DaoFactory.getAdsCategoriesDao().getCategoryId(category);
-
-            DaoFactory.getAdsCategoriesDao().insert(adID, categoryId);
-            //TODO: Insert ad id and category id into ads_categories table
-            response.sendRedirect("/ads");
+        long adId = DaoFactory.getAdsDao().insert(ad);
+        ad.setId(adId);
+        DaoFactory.getAdsCategoriesDao().insert(ad);
+        response.sendRedirect("/ads");
         
     }
 }
