@@ -26,13 +26,13 @@ public class EditProfileServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
 
 
-//        boolean inputHasErrors = username.isEmpty()
-//                || email.isEmpty();
-//
-//        if (inputHasErrors) {
-//            response.sendRedirect("/profile/edit");
-//            return;
-//        }
+        boolean inputHasErrors = username.isEmpty()
+                || email.isEmpty();
+
+        if (inputHasErrors) {
+            response.sendRedirect("/profile/edit");
+            return;
+        }
 
         user.setUsername(username);
         user.setEmail(email);

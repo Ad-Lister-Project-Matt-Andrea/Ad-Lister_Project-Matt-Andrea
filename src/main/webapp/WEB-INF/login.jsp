@@ -11,8 +11,8 @@
         <h1 class="pt-4">Please Log In</h1>
         <form action="/login" method="POST" class="needs-validation" novalidate>
             <div class="form-group has-validation">
-                <label for="username">Username</label>
-                <input id="username" name="username" class="form-control is-valid" type="text" required>
+                <label for="username" class="form-label">Username</label>
+                <input id="username" name="username" class="form-control is-invalid" type="text" required>
                 <div id="usernameValid" class="valid-feedback ">
                     Looks good!
                 </div>
@@ -21,8 +21,8 @@
                 </div>
             </div>
             <div class="form-group has-validation">
-                <label for="password">Password</label>
-                <input id="password" name="password" class="form-control is-valid" type="password" required>
+                <label for="password" class="form-label">Password</label>
+                <input id="password" name="password" class="form-control is-invalid" type="password" required>
                 <div id="passwordValid" class="valid-feedback ">
                     Looks good!
                 </div>
@@ -35,8 +35,8 @@
             </div>
         </form>
         <div class="d-grid gap-2">
-            <a href="/register" class="d-grid gap-2">
-                <input type="submit" class="btn btn-warning btn-block" value="Don't Have An Account?">
+            <a href="/register" class="d-grid gap-2 text-decoration-none">
+                <input type="submit" class="btn btn-warning btn-block " value="Don't Have An Account?">
             </a>
         </div>
     </div>

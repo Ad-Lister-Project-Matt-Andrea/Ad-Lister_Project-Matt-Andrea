@@ -37,7 +37,12 @@ public class CreateAdServlet extends HttpServlet {
         String category = request.getParameter("category");
 
         System.out.println(category);
-        
+
+        if(title == null || description ==null || price == null || location == null || category == null){
+            response.sendRedirect("/ads/create");
+            return;
+        }
+
         Ad ad = new Ad();
         try {
             ad.setUserId(user_id);
