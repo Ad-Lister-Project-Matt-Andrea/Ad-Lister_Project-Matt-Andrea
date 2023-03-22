@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
@@ -54,15 +55,9 @@
                 <label for="category" class="form-label">Category</label>
                 <select id="category" name="category" multiple class="form-select is-invalid" aria-label="Default select example">
                     <option disabled selected value="">Choose a category</option>
-                    <option value="free">Free</option>
-                    <option value="help wanted">Help Wanted</option>
-                    <option value="services">Services</option>
-                    <option value="furniture">Furniture</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="wall decor">Wall Decor</option>
-                    <option value="collectables">Collectables</option>
-                    <option value="pets">Pets</option>
-                    <option value="clothes">Clothes</option>
+                    <c:forEach var="cat" items="${categories}">
+                        <option value="${cat.id}">${cat.name}</option>
+                    </c:forEach>
                 </select>
                 <div id="categoryValid" class="valid-feedback ">
                     Looks good!

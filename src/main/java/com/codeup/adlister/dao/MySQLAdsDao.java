@@ -168,7 +168,6 @@ public class MySQLAdsDao implements Ads {
         try{
             stmt = connection.prepareStatement("DELETE FROM ymir_matt.ads WHERE id= ?");
             stmt.setLong(1, ad.getId());
-
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error updating ad information", e);
@@ -183,7 +182,7 @@ public class MySQLAdsDao implements Ads {
 
         try {
             String sqlStatementString = """
-                    SELECT * FROM ymir_matt.ads_categoriesssss
+                    SELECT * FROM ymir_matt.ads_categories
                     INNER JOIN categories c on ads_categories.category_id = c.id
                     WHERE ad_id = ?
                     """;
@@ -198,12 +197,6 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        System.out.print("MySQLAdsDao:\n");
-        for (Category cat:categories) {
-            System.out.printf("Category Name: |%s|, Category ID: |%s|\n", cat.getName(), cat.getId());
-        }
-
         return categories;
     }
 

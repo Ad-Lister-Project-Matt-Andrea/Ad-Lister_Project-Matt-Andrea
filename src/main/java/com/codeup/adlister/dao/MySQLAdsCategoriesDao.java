@@ -25,6 +25,52 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
     }
 
     @Override
+    public ArrayList<Category> all() {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ymir_matt.categories");
+            ResultSet rs = stmt.executeQuery();
+            return createCategoriesFromResults(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error retrieving all categories.", e);
+        }
+    }
+
+    @Override
+    public ArrayList<Category> findByIds(ArrayList<Long> ids) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            // TODO: Consider moving query building to helper func
+            int length = ids.size();
+            String query = "SELECT * FROM ymir_matt.categories WHERE id in (";
+            StringBuilder queryBuilder = new StringBuilder(query);
+            for (int i = 0; i < length; i++) {
+                queryBuilder.append(" ?");
+                if (i != length - 1)
+                    queryBuilder.append(",");
+            }
+            queryBuilder.append(")");
+
+            stmt = connection.prepareStatement(queryBuilder.toString());
+
+            for (int i = 0; i < ids.size(); i++) {
+                long id = ids.get(i);
+                stmt.setLong(i + 1, id);
+            }
+
+            rs = stmt.executeQuery();
+
+            return createCategoriesFromResults(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error retrieving category information", e);
+        }
+    }
+
+
+    @Override
     public void insert(Ad ad) {
         try {
             StringBuilder insertQuery = new StringBuilder("INSERT INTO ads_categories(ad_id, category_id) VALUES ");
@@ -33,8 +79,8 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
 
             PreparedStatement stmt = connection.prepareStatement(insertQuery.toString());
             int i = 0;
-            for (String category: ad.getCategories()) {
-                long catId = getCategoryId(category);
+            for (Category cat:ad.getCategories()) {
+                long catId = cat.getId();
                 stmt.setLong(++i, ad.getId());
                 stmt.setLong(++i, catId);
             }
@@ -58,6 +104,15 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving ad information", e);
         }
+    }
+
+    private ArrayList<Category> createCategoriesFromResults(ResultSet rs) throws SQLException {
+        ArrayList<Category> categories = new ArrayList<>();
+        while (rs.next()) {
+            Category category = new Category(rs.getLong("id") ,rs.getString("category"));
+            categories.add(category);
+        }
+        return categories;
     }
 
     //if we had a categories dao this would go there

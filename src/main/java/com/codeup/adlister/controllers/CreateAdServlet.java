@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
@@ -10,12 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null) {
+            request.setAttribute("categories", DaoFactory.getAdsCategoriesDao().all());
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
             return;
         }
@@ -29,15 +31,20 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
 
-
         long user_id = user.getId();
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         String location = request.getParameter("location");
-        String[] categories = request.getParameterValues("category");
-        //List<Category> categories= DaoFactory.getAdsCategoriesDao().getCategoriesFromCategoryNames(category);
-        System.out.println(categories.toString());
+
+        // TODO: extract this into helper func
+        String[] categoriesStringList = request.getParameterValues("category");
+        ArrayList<Long> longList = new ArrayList<>();
+        for (String category:categoriesStringList) {
+            long id = Long.parseLong(category);
+            longList.add(id);
+        }
+        ArrayList<Category> categories = DaoFactory.getAdsCategoriesDao().findByIds(longList);
 
         if(title == null || description ==null || price == null || location == null || categories == null){
             response.sendRedirect("/ads/create");
@@ -51,7 +58,7 @@ public class CreateAdServlet extends HttpServlet {
             ad.setDescription(description);
             ad.setPrice(Double.parseDouble(price));
             ad.setLocation(location);
-            ad.setCategories(List.of(categories));
+            ad.setCategories(categories);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             e.printStackTrace();

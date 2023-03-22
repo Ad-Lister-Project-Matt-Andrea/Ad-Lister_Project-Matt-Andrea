@@ -18,13 +18,11 @@ import java.util.ArrayList;
 public class DetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String adId = request.getParameter("id");
-        Ad ad = DaoFactory.getAdsDao().findById(Long.parseLong(adId));
-        ArrayList<Category> categories = DaoFactory.getAdsDao().getAdCategories(Long.parseLong(adId));
 
-        System.out.print("DetailsServlet:\n");
-        for (Category cat:categories) {
-            System.out.printf("Category Name: |%s|, Category ID: |%s|\n", cat.getName(), cat.getId());
-        }
+        Ad ad = DaoFactory.getAdsDao().findById(Long.parseLong(adId));
+
+        ArrayList<Category> categories = DaoFactory.getAdsDao().getAdCategories(Long.parseLong(adId));
+        ad.setCategories(categories);
 
         request.setAttribute("ad", ad);
         request.getRequestDispatcher("/WEB-INF/ads/details.jsp").forward(request, response);
