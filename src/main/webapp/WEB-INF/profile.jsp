@@ -14,7 +14,7 @@
         <div class="container mt-2 col">
             <h1 class="text-center">Welcome, ${sessionScope.user.username}!</h1>
             <div class="card border rounded shadow-lg d-flex flex-row align-items-center justify-content-evenly ">
-                <img src="https://picsum.photos/200" class="img-thumbnail p-3 m-3" width="200" height="200">
+                <img src="https://picsum.photos/200" class="img-thumbnail p-3 m-3 border-primary" width="200" height="200">
                 <div class="flex-column align-items-start">
                     <p class="card-text">${sessionScope.user.username}</p>
                     <p class="card-text">${sessionScope.user.email}</p>
