@@ -80,9 +80,18 @@ public class MySQLAdsDao implements Ads {
     @Override
     public List<Ad> returnSearchResults(String searchQuery) {
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM ymir_matt.ads WHERE title LIKE ? OR description LIKE ?");
+            PreparedStatement stmt = connection.prepareStatement("""
+                        SELECT a.id, a.title, a.description
+                        FROM ymir_matt.ads a
+                        INNER JOIN ads_categories ac ON ac.ad_id = a.id
+                        INNER JOIN categories c ON c.id = ac.category_id
+                        WHERE a.title LIKE ? OR c.category LIKE ?
+                        GROUP BY a.id, a.title, a.description;
+                        """);
             stmt.setString(1, "%" + searchQuery + "%");
             stmt.setString(2, "%" + searchQuery + "%");
+
+
             ResultSet rs = stmt.executeQuery();
 
             List<Ad> searchResults = new ArrayList<>();
@@ -93,12 +102,14 @@ public class MySQLAdsDao implements Ads {
                 ad.setDescription(rs.getString("description"));
                 searchResults.add(ad);
             }
+            rs.close();
             return searchResults;
         } catch (SQLException e) {
             System.out.println("Error fetching results");
             return null;
         }
     }
+
 
 
     @Override
