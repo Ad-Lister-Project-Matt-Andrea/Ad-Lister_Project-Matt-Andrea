@@ -88,6 +88,7 @@ public class MySQLAdsDao implements Ads {
             List<Ad> searchResults = new ArrayList<>();
             while (rs.next()) {
                 Ad ad = new Ad();
+                ad.setId(rs.getLong("id"));
                 ad.setTitle(rs.getString("title"));
                 ad.setDescription(rs.getString("description"));
                 searchResults.add(ad);

@@ -21,7 +21,7 @@
         <table>
             <c:forEach var="ad" items="${searchResults}">
                 <tr>
-                    <h2>${ad.title}</h2>
+                    <a href="/ads/details?id=${ad.id}" class="text-decoration-none "><h2>${ad.title}</h2></a>
                     <p>${ad.description}</p>
                 </tr>
             </c:forEach>

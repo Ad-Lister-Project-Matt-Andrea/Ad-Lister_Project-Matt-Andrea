@@ -25,6 +25,7 @@ public class DetailsServlet extends HttpServlet {
         ad.setCategories(categories);
 
         request.setAttribute("ad", ad);
+        System.out.println(ad.toString());
         request.getRequestDispatcher("/WEB-INF/ads/details.jsp").forward(request, response);
     }
 }
