@@ -90,6 +90,7 @@ public class MySQLUsersDao implements Users {
                 }
             }
         } catch (SQLException ex) {
+            ex.printStackTrace();
             return -1;
         }
     }

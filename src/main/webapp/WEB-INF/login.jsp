@@ -36,7 +36,7 @@
         </form>
         <div class="d-grid gap-2">
             <a href="/register" class="d-grid gap-2 text-decoration-none">
-                <input type="submit" class="btn btn-warning btn-block " value="Don't Have An Account?">
+                <input type="submit" class="btn btn-warning btn-block text-white" value="Don't Have An Account?">
             </a>
         </div>
     </div>
