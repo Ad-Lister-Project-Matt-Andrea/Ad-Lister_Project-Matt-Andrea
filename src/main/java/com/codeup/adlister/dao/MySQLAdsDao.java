@@ -182,10 +182,12 @@ public class MySQLAdsDao implements Ads {
         ResultSet rs = null;
 
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ymir_matt.ads_categories inner join select * \n" +
-                    "from ad_category ac \n" +
-                    "inner join categories c on ac.category_id = c.id \n" +
-                    "WHERE ad_id = ?");
+            String sqlStatementString = """
+                    SELECT * FROM ymir_matt.ads_categoriesssss
+                    INNER JOIN categories c on ads_categories.category_id = c.id
+                    WHERE ad_id = ?
+                    """;
+            stmt = connection.prepareStatement(sqlStatementString);
             stmt.setLong(1, adId);
             rs = stmt.executeQuery();
 
@@ -196,7 +198,12 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(categories);
+
+        System.out.print("MySQLAdsDao:\n");
+        for (Category cat:categories) {
+            System.out.printf("Category Name: |%s|, Category ID: |%s|\n", cat.getName(), cat.getId());
+        }
+
         return categories;
     }
 
