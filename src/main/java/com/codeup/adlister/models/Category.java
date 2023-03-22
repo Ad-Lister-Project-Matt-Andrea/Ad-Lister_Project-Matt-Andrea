@@ -27,6 +27,14 @@ public class Category {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
     public Category(long id) {
         this.id = id;
     }

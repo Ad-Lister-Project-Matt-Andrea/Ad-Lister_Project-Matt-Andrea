@@ -111,6 +111,19 @@ public class Ad {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", location='" + location + '\'' +
+                ", categories=" + categories +
+                '}';
+    }
+
     public ArrayList<Category> getCategories() {
         return categories;
     }
