@@ -11,16 +11,45 @@
 
     <div class="container-fluid mt-3 row">
 
-        <div class="container mt-4 col">
-            <div class="card border rounded shadow-lg">
-                <h1 class="text-center">Welcome, ${sessionScope.user.username}!</h1>
-                <img src="/WEB-INF/img/profile_pic1.png" class="img-thumbnail" width="200" height="200">
-                <div class="card-body" width="200" height="200">
-                    <p class="card-text"><b>Username: </b>${sessionScope.user.username}</p>
-                    <p class="card-text"><b>Email: </b>${sessionScope.user.email}</p>
+        <div class="container mt-2 col">
+            <h1 class="text-center">Welcome, ${sessionScope.user.username}!</h1>
+            <div class="card border rounded shadow-lg d-flex flex-row align-items-center justify-content-evenly ">
+                <img src="https://picsum.photos/200" class="img-thumbnail p-3 m-3" width="200" height="200">
+                <div class="flex-column align-items-start">
+                    <p class="card-text">${sessionScope.user.username}</p>
+                    <p class="card-text">${sessionScope.user.email}</p>
+                    <p class="card-text">Joined March 2023</p>
+                    <p class="card-text">San Antonio, TX</p>
+
+                </div>
+            </div>
+
+            <div class="mt-3 p-4 card border rounded shadow-lg d-flex flex-row justify-content-evenly align-items-center" width="200" height="200">
+                <div class="flex-column ">
+                    <p class="card-text"><b>100%</b> Positive Feedback</p>
+                </div>
+                <div class="flex-column ">
+                    <p class="card-text"><b>1.4K</b> Items Sold</p>
+                </div>
+                <div class="flex-column ">
+                    <p class="card-text"><b>162</b> Followers</p>
+                </div>
+            </div>
+
+            <div class="mt-3 p-4 card border rounded shadow-lg d-flex flex-row justify-content-evenly align-items-center" width="200" height="200">
+                <div class="flex-column ">
+                    <a href="https://facebook.com"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                </div>
+                <div class="flex-column ">
+                    <a href="https://messenger.com"><i class="fa-brands fa-facebook-messenger fa-lg"></i></a>
+                </div>
+                <div class="flex-column ">
+                    <a href="https://instagram.com"><i class="fa-brands fa-instagram fa-lg"></i></a>
                 </div>
             </div>
         </div>
+
+
 
         <div class="container w-100 p-2 col">
             <h1 class="text-center">My Ads</h1>

@@ -96,7 +96,7 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Error.", e);
+            throw new RuntimeException("Error inserting an ad_category.", e);
         }
     }
 
@@ -111,13 +111,12 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
             rs.next();
             return rs.getLong(1);
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving ad information", e);
+            throw new RuntimeException("Error retrieving category id information", e);
         }
     }
 
     //if we had a categories dao this would go there
     public List<Category> getCategoriesFromCategoryNames(String[] names){
-        //loop through category names create category for each one and return a list of categories
         List<Category> categories = new ArrayList<>();
         int counter = 1;
         for (String name: names) {
@@ -125,8 +124,6 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
             counter ++;
         }
         return categories;
-        //have at least three categories
-        //for each name in names use a query
-        //clean up later
+
     }
 }
