@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 import org.mindrot.jbcrypt.BCrypt;
@@ -112,7 +113,29 @@ public class MySQLUsersDao implements Users {
 
     }
 
+    public User findById(Ad ad) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        User user = null;
 
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ymir_matt.users WHERE id = ?");
+            stmt.setLong(1, ad.getUserId());
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                user = new User(
+                        rs.getLong("id"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password")
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad information", e);
+        }
+        return user;
+    }
 
 
 

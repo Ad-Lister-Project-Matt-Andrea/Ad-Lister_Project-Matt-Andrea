@@ -17,7 +17,9 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <div class="container card border shadow-lg mt-3">
-    <h1 class="text-primary">${ad.title}</h1>
+    <div class="row ">
+        <h1 class="col col-4 text-primary">${ad.title}</h1>
+    </div>
         <br>
     <table>
         <tr>
@@ -42,6 +44,9 @@
             </c:forEach>
         </tr>
     </table>
+</div>
+<div class="container card border shadow-lg mt-2">
+    <a href="http://gmail.com"><button class="btn btn-primary m-2" type="button">contact: ${user.email}</button></a>
 </div>
 </body>
 </html>
