@@ -166,9 +166,11 @@ public class MySQLAdsDao implements Ads {
         PreparedStatement stmt = null;
 
         try{
+            stmt = connection.prepareStatement("DELETE FROM ymir_matt.ads_categories WHERE ad_id= ?");
+            stmt.setLong(1, ad.getId());
+            stmt.executeUpdate();
             stmt = connection.prepareStatement("DELETE FROM ymir_matt.ads WHERE id= ?");
             stmt.setLong(1, ad.getId());
-
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error updating ad information", e);
@@ -182,10 +184,12 @@ public class MySQLAdsDao implements Ads {
         ResultSet rs = null;
 
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ymir_matt.ads_categories inner join select * \n" +
-                    "from ad_category ac \n" +
-                    "inner join categories c on ac.category_id = c.id \n" +
-                    "WHERE ad_id = ?");
+            String sqlStatementString = """
+                    SELECT * FROM ymir_matt.ads_categories
+                    INNER JOIN categories c on ads_categories.category_id = c.id
+                    WHERE ad_id = ?
+                    """;
+            stmt = connection.prepareStatement(sqlStatementString);
             stmt.setLong(1, adId);
             rs = stmt.executeQuery();
 
@@ -196,7 +200,6 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(categories);
         return categories;
     }
 
