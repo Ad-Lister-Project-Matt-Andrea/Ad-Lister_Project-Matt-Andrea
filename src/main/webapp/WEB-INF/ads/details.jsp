@@ -17,7 +17,15 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <div class="container card border shadow-lg mt-3">
-    <h1 class="text-primary">${ad.title}</h1>
+    <div class="row d-flex justify-content-between">
+        <h1 class="col col-4 text-primary">${ad.title}</h1>
+        <div class="container col col-2"></div>
+        <div class="container col col-1"></div>
+        <div class="container col col-1 d-flex">
+
+            <a href="http://gmail.com"><button class="btn btn-primary m-2" type="button">contact ${user.email}</button></a>
+        </div>
+    </div>
         <br>
     <table>
         <tr>
@@ -42,6 +50,7 @@
             </c:forEach>
         </tr>
     </table>
+
 </div>
 </body>
 </html>
