@@ -37,7 +37,7 @@ public class CreateAdServlet extends HttpServlet {
         String price = request.getParameter("price");
         String location = request.getParameter("location");
 
-        // TODO: extract this into helper func
+        // TODO: put this into helper function
         String[] categoriesStringList = request.getParameterValues("category");
         ArrayList<Long> longList = new ArrayList<>();
         for (String category:categoriesStringList) {

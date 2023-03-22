@@ -166,6 +166,9 @@ public class MySQLAdsDao implements Ads {
         PreparedStatement stmt = null;
 
         try{
+            stmt = connection.prepareStatement("DELETE FROM ymir_matt.ads_categories WHERE ad_id= ?");
+            stmt.setLong(1, ad.getId());
+            stmt.executeUpdate();
             stmt = connection.prepareStatement("DELETE FROM ymir_matt.ads WHERE id= ?");
             stmt.setLong(1, ad.getId());
             stmt.executeUpdate();

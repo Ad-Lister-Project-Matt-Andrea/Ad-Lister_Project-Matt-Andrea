@@ -12,7 +12,7 @@
     <div class="container-fluid mt-3 row">
 
         <div class="container mt-4 col">
-            <div class="card ">
+            <div class="card border rounded shadow-lg">
                 <h1 class="text-center">Welcome, ${sessionScope.user.username}!</h1>
                 <img src="/WEB-INF/img/profile_pic1.png" class="img-thumbnail" width="200" height="200">
                 <div class="card-body" width="200" height="200">

@@ -69,6 +69,15 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
         }
     }
 
+    private ArrayList<Category> createCategoriesFromResults(ResultSet rs) throws SQLException {
+        ArrayList<Category> categories = new ArrayList<>();
+        while (rs.next()) {
+            Category category = new Category(rs.getLong("id") ,rs.getString("category"));
+            categories.add(category);
+        }
+        return categories;
+    }
+
 
     @Override
     public void insert(Ad ad) {
@@ -104,15 +113,6 @@ public class MySQLAdsCategoriesDao implements AdsCategories {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving ad information", e);
         }
-    }
-
-    private ArrayList<Category> createCategoriesFromResults(ResultSet rs) throws SQLException {
-        ArrayList<Category> categories = new ArrayList<>();
-        while (rs.next()) {
-            Category category = new Category(rs.getLong("id") ,rs.getString("category"));
-            categories.add(category);
-        }
-        return categories;
     }
 
     //if we had a categories dao this would go there
